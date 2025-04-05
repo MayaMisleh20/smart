@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyAz7-0dyu7NrqIi325mstgpw9jsfYmoXGA",
+    authDomain: "smartvac-642fb.firebaseapp.com",
+    databaseURL: " https://smartvac-642fb-default-rtdb.firebaseio.com",
+    projectId: "smartvac-642fb",
+    storageBucket: "smartvac-642fb.firebasestorage.app",
+    messagingSenderId: "644610854653",
+    appId: "1:644610854653:web:e176a0a58316c8ee76f894",
+    measurementId: "G-PQFNN2LMZT"
+  }
 };
 
 /*

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Vacuum Map</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="map-page">
+  <div class="map-container">
+    <img src="assets/floorplan.png" class="floor-img" />
+
+    <!-- Robot marker (positioned absolutely) -->
+    <div
+      class="robot-marker"
+      [style.left.%]="robotX"
+      [style.top.%]="robotY">
+    </div>
+  </div>
+</ion-content>

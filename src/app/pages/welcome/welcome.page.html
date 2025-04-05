@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="welcome-bg">
+  <div class="background-image"></div>
+
+  <!-- 🔥 3D Model Section -->
+  <div class="model-container">
+    <model-viewer 
+      src="assets/models/vaccum.glb"
+      alt="vaccum Car"
+      auto-rotate 
+      camera-controls 
+      disable-zoom
+      style="background: transparent;"
+      shadow-intensity="1"
+      interaction-prompt="none"
+    ></model-viewer>
+    <div class="glow-ring"></div>
+
+  </div>
+
+  <div class="welcome-text">
+    <h2>Welcome</h2>
+    <p>
+      The SmartVac™ app helps you get the best from your connected machine from day one.
+    </p>
+  </div>
+
+  
+
+  <div class="action-buttons">
+    <ion-button expand="block" routerLink="/signup" class="left-button">
+      New Owner
+    </ion-button>
+    <ion-button expand="block" routerLink="/login" class="right-button">
+      Log in
+    </ion-button>
+  </div>
+</ion-content>

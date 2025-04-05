@@ -1,0 +1,103 @@
+.login-bg {
+  --background: #000;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-container {
+  padding: 32px;
+  max-width: 500px;
+  margin: 0 auto;
+
+  h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  p {
+    opacity: 0.6;
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  ion-item {
+    --background: rgba(255, 255, 255, 0.03);
+    --color: white;
+    --padding-start: 12px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+
+    ion-input {
+      font-size: 1rem;
+    }
+
+    &:hover,
+    &:focus-within {
+      border-color: #a78bfa;
+      box-shadow: 0 0 12px rgba(167, 139, 250, 0.4);
+    }
+  }
+
+  .forgot-password {
+    text-align: right;
+    font-size: 0.85rem;
+    margin-top: -12px;
+    margin-bottom: 16px;
+    color: #a892e0;
+    cursor: pointer;
+    user-select: none;
+  
+    &:hover {
+      text-decoration: underline;
+      color: #bb9cf2;
+    }
+  }
+  
+
+  .submit-button {
+    margin-top: 12px;
+    height: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 12px;
+    --background: linear-gradient(135deg, #7e57c2 0%, #5e35b1 100%);
+    --box-shadow: 0 0 12px rgba(126, 87, 194, 0.6);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.02);
+      --background: linear-gradient(135deg, #9575cd 0%, #7e57c2 100%);
+    }
+
+    &:active {
+      transform: scale(0.98);
+      --box-shadow: 0 0 8px rgba(126, 87, 194, 0.3);
+    }
+
+    &[disabled] {
+      opacity: 0.4;
+      --background: #3b2e5a;
+    }
+  }
+
+  .bottom-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+
+    a {
+      color: #a78bfa;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

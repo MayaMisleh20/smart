@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-bg" fullscreen>
+  <div class="form-container">
+    <h3>Your details</h3>
+    <p>We'll need a few more details to create your login.</p>
+
+    <!-- ✅ Start of the connected form -->
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+
+      <ion-item>
+        <ion-input
+          formControlName="firstName"
+          placeholder="First name"
+          type="text">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          formControlName="lastName"
+          placeholder="Last name"
+          type="text">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          formControlName="email"
+          placeholder="Email"
+          type="email">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          formControlName="password"
+          placeholder="Password"
+          type="password">
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-checkbox formControlName="marketingOptIn" slot="start"></ion-checkbox>
+        <ion-label>
+          I agree to operate and maintain the smart vacuum responsibly using this app.
+        </ion-label>
+      </ion-item>
+      
+      <ion-button
+        expand="block"
+        class="submit-button"
+        type="submit"
+        [disabled]="signupForm.invalid">
+        Continue
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>
