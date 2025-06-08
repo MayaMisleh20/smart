@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-title>Smart Cleaning</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding">
+  <div class="container">
+ 
+    <!-- Smart Suggestion -->
+    <div *ngIf="smartSuggestion" class="suggestion">
+      <div class="suggestion-text">{{ smartSuggestion }}</div>
+      <ion-button size="small" class="primary-button" (click)="acceptSuggestion()">Accept</ion-button>
+    </div>
+ 
+    <!-- Create Schedule -->
+    <div>
+      <div class="section-title">New Cleaning Schedule</div>
+ 
+      <!-- Custom Calendar -->
+      <div class="form-group">
+        <label class="form-label">Select Date</label>
+        <div class="calendar">
+          <div class="calendar-header">
+            <button (click)="prevMonth()">‹</button>
+            <span>{{ monthNames[currentMonth] }} {{ currentYear }}</span>
+            <button (click)="nextMonth()">›</button>
+          </div>
+          <div class="calendar-grid">
+            <div *ngFor="let day of calendarDays"
+                 class="calendar-day"
+                 [class.today]="isToday(day)"
+                 [class.selected]="isSelectedDate(day)"
+                 (click)="selectDate(day)">
+              {{ day.getDate() }}
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Time Selector (Current Time Auto) -->
+      <div class="form-group">
+        <label class="form-label">Select Time</label>
+        <div class="time-select">
+          <div class="time-row">
+            <label>Hour</label>
+            <select [(ngModel)]="selectedHour" (change)="updateDateTime()">
+              <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
+            </select>
+          </div>
+          <div class="colon-separator">:</div>
+          <div class="time-row">
+            <label>Minute</label>
+            <select [(ngModel)]="selectedMinute" (change)="updateDateTime()">
+              <option *ngFor="let minute of minutes" [value]="minute">
+                {{ minute < 10 ? '0' + minute : minute }}
+              </option>
+            </select>
+          </div>
+          <div class="time-row">
+            <label>AM/PM</label>
+            <select [(ngModel)]="isPM" (change)="updateDateTime()">
+              <option [value]="false">AM</option>
+              <option [value]="true">PM</option>
+            </select>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Rooms -->
+      <div class="form-group">
+        <label class="form-label">Select Rooms</label>
+        <ion-select multiple="true" [(ngModel)]="selectedRooms" placeholder="Select rooms">
+          <ion-select-option *ngFor="let room of roomOptions" [value]="room">{{ room }}</ion-select-option>
+        </ion-select>
+      </div>
+ 
+      <!-- Priority -->
+      <div class="form-group">
+        <label class="form-label">Priority</label>
+        <ion-select [(ngModel)]="selectedPriority" placeholder="Choose Priority">
+          <ion-select-option value="normal">Normal</ion-select-option>
+          <ion-select-option value="high">High</ion-select-option>
+        </ion-select>
+      </div>
+ 
+      <!-- Mode -->
+      <div class="form-group">
+        <label class="form-label">Cleaning Mode</label>
+        <ion-select [(ngModel)]="selectedMode" placeholder="Select Mode">
+          <ion-select-option value="Quiet">Quiet</ion-select-option>
+          <ion-select-option value="Standard">Standard</ion-select-option>
+          <ion-select-option value="Turbo">Turbo</ion-select-option>
+        </ion-select>
+      </div>
+ 
+      <!-- Recurrence -->
+      <div class="form-group">
+        <label class="form-label">Recurrence</label>
+        <ion-select [(ngModel)]="selectedRecurrence" placeholder="Select Recurrence">
+          <ion-select-option value="once">Once</ion-select-option>
+          <ion-select-option value="daily">Daily</ion-select-option>
+          <ion-select-option value="weekly">Weekly</ion-select-option>
+        </ion-select>
+      </div>
+ 
+      <ion-button expand="block" class="primary-button" (click)="addSchedule()">
+        Add to Schedule
+      </ion-button>
+    </div>
+ 
+    <!-- Schedule List -->
+    <div *ngIf="scheduleList.length > 0; else emptyState">
+      <div class="section-title">Your Cleaning Schedule</div>
+      <ion-list lines="none">
+        <ion-item *ngFor="let task of scheduleList; let i = index" class="schedule-item">
+          <ion-label>
+            <div class="schedule-time">{{ formatDate(task.dateTime) }}</div>
+            <div class="schedule-details">
+              <span><strong>Rooms:</strong> {{ task.rooms.join(', ') }}</span><br>
+              <span><strong>Priority:</strong> {{ task.priority | titlecase }}</span><br>
+              <span><strong>Mode:</strong> {{ task.mode }}</span><br>
+              <span><strong>Recurrence:</strong> {{ task.recurrence | titlecase }}</span>
+            </div>
+          </ion-label>
+          <ion-button fill="clear" color="light" size="small" (click)="confirmDelete(i)">Remove</ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+ 
+    <ng-template #emptyState>
+      <div>
+        <div class="section-title">No Schedules Yet</div>
+        <p>Add your first cleaning schedule!</p>
+      </div>
+    </ng-template>
+ 
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <ion-button class="quick-button" (click)="startCleaningNow()">Clean All Now</ion-button>
+      <ion-button class="quick-button" (click)="cleanHighPriority()">High Priority</ion-button>
+    </div>
+ 
+    <!-- Countdown -->
+    <div *ngIf="nextCleaningCountdown" class="countdown">
+      Next cleaning in: <strong>{{ nextCleaningCountdown }}</strong>
+    </div>
+ 
+  </div>
+</ion-content>

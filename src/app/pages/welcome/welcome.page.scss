@@ -102,6 +102,15 @@ ion-content.welcome-bg {
   padding: 0 20px;
   gap: 12px;
 
+  .action-buttons ion-button {
+    color: white;
+  }
+  
+  .action-buttons ion-button::part(native) {
+    color: white;
+  }
+  
+  
   ion-button {
     flex: 1;
     height: 60px;

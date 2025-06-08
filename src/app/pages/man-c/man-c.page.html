@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-title>Robot Manual Control</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="manualcontrol-content">
+ 
+  <div class="control-deck">
+ 
+    <!-- Left Panel: Buttons -->
+    <div class="deck-left">
+      <div class="button-container">
+        <button (click)="move('up')">Up</button>
+      </div>
+      <div class="button-container">
+        <button (click)="move('down')">Down</button>
+      </div>
+      <div class="button-container">
+        <button (click)="move('left')">Left</button>
+      </div>
+      <div class="button-container">
+        <button (click)="move('right')">Right</button>
+      </div>
+      <div class="button-container">
+        <button (click)="move('stop')">Stop</button>
+      </div>
+    </div>]
+ 
+    <!-- Right Panel: Commands -->
+    <div class="deck-right">
+ 
+      <div class="pill-buttons">
+        <button class="pill-button" (click)="performAction('Spot Clean')">Spot Clean</button>
+        <button class="pill-button" (click)="performAction('Return to Base')">Return to Base</button>
+        <button class="pill-button" (click)="toggleCommandPalette()">More Commands</button>
+      </div>
+ 
+      <div class="command-palette" *ngIf="showCommandPalette">
+        <ion-select placeholder="Choose Command" (ionChange)="selectCommand($event)">
+          <ion-select-option value="Start Mapping">Start Mapping</ion-select-option>
+          <ion-select-option value="Pause Operation">Pause Operation</ion-select-option>
+          <ion-select-option value="Resume Cleaning">Resume Cleaning</ion-select-option>
+        </ion-select>
+      </div>
+ 
+      <div class="history">
+        <p class="history-title">Command History</p>
+        <ion-list>
+          <ion-item *ngFor="let item of commandHistory">{{ item }}</ion-item>
+        </ion-list>
+      </div>
+ 
+    </div>
+ 
+  </div>
+ 
+</ion-content>

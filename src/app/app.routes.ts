@@ -32,6 +32,15 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/map/map.page').then((m) => m.MapPage),
   },
+  {
+    path: 'cleaning-schedule-page',
+    loadComponent: () => import('./pages/cleaning-schedule-page/cleaning-schedule-page.page').then( m => m.CleaningSchedulePagePage)
+  },
+  {
+    path: 'man-c',
+    loadComponent: () => import('./pages/man-c/man-c.page').then( m => m.ManCPage)
+  },
 
-
+ 
+ 
 ]
